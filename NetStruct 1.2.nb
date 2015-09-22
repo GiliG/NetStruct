@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       157,          7]
-NotebookDataLength[    151515,       3549]
-NotebookOptionsPosition[    151009,       3527]
-NotebookOutlinePosition[    151353,       3542]
-CellTagsIndexPosition[    151310,       3539]
+NotebookDataLength[    152580,       3572]
+NotebookOptionsPosition[    152074,       3550]
+NotebookOutlinePosition[    152418,       3565]
+CellTagsIndexPosition[    152375,       3562]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -113,52 +113,75 @@ Cell[BoxData[{
        RowBox[{"ApplyThreshold", "[", 
         RowBox[{"matx", ",", "threshold"}], "]"}]}], ";", 
       "\[IndentingNewLine]", 
-      RowBox[{"g", "=", 
-       RowBox[{"WeightedAdjacencyGraph", "[", 
-        RowBox[{"m1", "/.", " ", 
-         RowBox[{"0", "\[Rule]", "\[Infinity]"}]}], "]"}]}], ";", 
-      "\[IndentingNewLine]", 
-      RowBox[{"complist", "=", 
-       RowBox[{"ConnectedComponents", "[", "g", "]"}]}], ";", 
-      "\[IndentingNewLine]", 
-      RowBox[{"m2", "=", 
-       RowBox[{"Table", "[", 
+      RowBox[{"If", "[", 
+       RowBox[{
         RowBox[{
-         RowBox[{"m1", "\[LeftDoubleBracket]", 
-          RowBox[{
-           RowBox[{
-           "complist", "\[LeftDoubleBracket]", "i", "\[RightDoubleBracket]"}],
-            ",", 
-           RowBox[{
-           "complist", "\[LeftDoubleBracket]", "i", 
-            "\[RightDoubleBracket]"}]}], "\[RightDoubleBracket]"}], ",", 
-         RowBox[{"{", 
-          RowBox[{"i", ",", 
-           RowBox[{"Length", "[", "complist", "]"}]}], "}"}]}], "]"}]}], ";", 
-      "\[IndentingNewLine]", 
-      RowBox[{"indlistnew", "=", 
-       RowBox[{"Table", "[", 
+         RowBox[{"Union", "[", 
+          RowBox[{"Flatten", "[", "m1", "]"}], "]"}], "\[NotEqual]", 
+         RowBox[{"{", "0", "}"}]}], ",", "\[IndentingNewLine]", 
         RowBox[{
-         RowBox[{"indlistInfo", "\[LeftDoubleBracket]", 
-          RowBox[{
-          "complist", "\[LeftDoubleBracket]", "i", "\[RightDoubleBracket]"}], 
-          "\[RightDoubleBracket]"}], ",", 
-         RowBox[{"{", 
-          RowBox[{"i", ",", 
-           RowBox[{"Length", "[", "complist", "]"}]}], "}"}]}], "]"}]}], ";", 
-      "\[IndentingNewLine]", 
+         RowBox[{"g", "=", 
+          RowBox[{"WeightedAdjacencyGraph", "[", 
+           RowBox[{"m1", "/.", " ", 
+            RowBox[{"0", "\[Rule]", "\[Infinity]"}]}], "]"}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"complist", "=", 
+          RowBox[{"ConnectedComponents", "[", "g", "]"}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"m2", "=", 
+          RowBox[{"Table", "[", 
+           RowBox[{
+            RowBox[{"m1", "\[LeftDoubleBracket]", 
+             RowBox[{
+              RowBox[{
+              "complist", "\[LeftDoubleBracket]", "i", 
+               "\[RightDoubleBracket]"}], ",", 
+              RowBox[{
+              "complist", "\[LeftDoubleBracket]", "i", 
+               "\[RightDoubleBracket]"}]}], "\[RightDoubleBracket]"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"i", ",", 
+              RowBox[{"Length", "[", "complist", "]"}]}], "}"}]}], "]"}]}], 
+         ";", "\[IndentingNewLine]", 
+         RowBox[{"indlistnew", "=", 
+          RowBox[{"Table", "[", 
+           RowBox[{
+            RowBox[{"indlistInfo", "\[LeftDoubleBracket]", 
+             RowBox[{
+             "complist", "\[LeftDoubleBracket]", "i", 
+              "\[RightDoubleBracket]"}], "\[RightDoubleBracket]"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"i", ",", 
+              RowBox[{"Length", "[", "complist", "]"}]}], "}"}]}], "]"}]}], 
+         ";"}]}], "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Union", "[", 
+          RowBox[{"Flatten", "[", "m1", "]"}], "]"}], "==", 
+         RowBox[{"{", "0", "}"}]}], ",", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"m2", "=", 
+          RowBox[{"Table", "[", 
+           RowBox[{
+            RowBox[{"{", "0", "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"Length", "[", "matx", "]"}], "}"}]}], "]"}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"indlistnew", "=", 
+          RowBox[{"Partition", "[", 
+           RowBox[{"indlistInfo", ",", "1"}], "]"}]}]}]}], 
+       "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
       RowBox[{"{", 
        RowBox[{"m2", ",", "indlistnew", ",", "m1"}], "}"}]}]}], 
     "\[IndentingNewLine]", "]"}]}], 
   "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{
-   RowBox[{"Needs", "[", "\"\<RLink`\>\"", "]"}], ";"}], 
+  RowBox[{"Needs", "[", "\"\<RLink`\>\"", "]"}], ";", 
   RowBox[{"(*", 
    RowBox[{
    "These", " ", "lines", " ", "initiate", " ", "Rlink", " ", "and", " ", 
-    "the", " ", "igraph", " ", "package"}], "*)"}]}], "\[IndentingNewLine]", 
- RowBox[{
+    "the", " ", "igraph", " ", "package"}], "*)"}], "\[IndentingNewLine]", 
   RowBox[{"InstallR", "[", "]"}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"RLinkResourcesInstall", "[", "]"}], ";"}], "\[IndentingNewLine]", 
@@ -2241,8 +2264,8 @@ commnunities\>\"", ",", "Bold", ",", "18"}], "]"}], "}"}]}], "]"}], "]"}]}]}],
              RowBox[{"#1", ",", 
               RowBox[{"N", "[", 
                FractionBox["#2", 
-                RowBox[{"Length", "[", "t1", "]"}]], "]"}]}], "}"}], "&"}], "@@@",
-            "t2"}]}], ";", "\[IndentingNewLine]", 
+                RowBox[{"Length", "[", "t1", "]"}]], "]"}]}], "}"}], "&"}], "@@@", \
+"t2"}]}], ";", "\[IndentingNewLine]", 
          RowBox[{"AppendTo", "[", 
           RowBox[{"freqlist", ",", "t3"}], "]"}], ";"}], 
         "\[IndentingNewLine]", ",", 
@@ -3509,7 +3532,7 @@ community partition?\>\"", ",",
    3.6517151976006737`*^9}, 3.6517182488935413`*^9, {3.651719543344903*^9, 
    3.6517195707758427`*^9}, {3.651719906766575*^9, 3.6517199350325108`*^9}, {
    3.651719980415985*^9, 3.6517200136424065`*^9}, {3.6517206099103804`*^9, 
-   3.6517206118432884`*^9}},
+   3.6517206118432884`*^9}, 3.651907555647457*^9},
  Background->RGBColor[0.88, 1, 0.88]],
 
 Cell[" ", "Text",
@@ -3547,8 +3570,8 @@ Cell[678, 25, 1378, 25, 182, "Text"],
 Cell[2059, 52, 137, 3, 47, "Input"],
 Cell[CellGroupData[{
 Cell[2221, 59, 107, 1, 49, "Subtitle"],
-Cell[2331, 62, 148376, 3450, 11650, "Input"],
-Cell[150710, 3514, 271, 9, 10, "Text"]
+Cell[2331, 62, 149441, 3473, 11770, "Input"],
+Cell[151775, 3537, 271, 9, 10, "Text"]
 }, Open  ]]
 }, Open  ]]
 }
