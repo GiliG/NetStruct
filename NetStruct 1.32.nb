@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       157,          7]
-NotebookDataLength[    152580,       3572]
-NotebookOptionsPosition[    152074,       3550]
-NotebookOutlinePosition[    152418,       3565]
-CellTagsIndexPosition[    152375,       3562]
+NotebookDataLength[    153396,       3591]
+NotebookOptionsPosition[    152890,       3569]
+NotebookOutlinePosition[    153234,       3584]
+CellTagsIndexPosition[    153191,       3581]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -177,11 +177,13 @@ Cell[BoxData[{
     "\[IndentingNewLine]", "]"}]}], 
   "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"Needs", "[", "\"\<RLink`\>\"", "]"}], ";", 
+  RowBox[{
+   RowBox[{"Needs", "[", "\"\<RLink`\>\"", "]"}], ";"}], 
   RowBox[{"(*", 
    RowBox[{
    "These", " ", "lines", " ", "initiate", " ", "Rlink", " ", "and", " ", 
-    "the", " ", "igraph", " ", "package"}], "*)"}], "\[IndentingNewLine]", 
+    "the", " ", "igraph", " ", "package"}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
   RowBox[{"InstallR", "[", "]"}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"RLinkResourcesInstall", "[", "]"}], ";"}], "\[IndentingNewLine]", 
@@ -375,28 +377,41 @@ weighted=TRUE)\n\>\""}], ";", "\[IndentingNewLine]",
            RowBox[{"#", "\[LeftDoubleBracket]", 
             RowBox[{"1", ";;", "2"}], "\[RightDoubleBracket]"}]}], "]"}], 
          "&"}]}], "]"}]}]}], "\[IndentingNewLine]", "]"}]}], 
-  "\[IndentingNewLine]", "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
    RowBox[{"ColorFunc", "[", 
-    RowBox[{"ind_", ",", "ComDetResult_", ",", "colors_"}], "]"}], ":=", 
+    RowBox[{
+    "ind_", ",", "ComDetResult_", ",", "IndlistInfo_", ",", "colors_"}], 
+    "]"}], ":=", 
    RowBox[{"Module", "[", 
     RowBox[{
      RowBox[{"{", "com", "}"}], ",", "\[IndentingNewLine]", 
      RowBox[{
+      RowBox[{"indname", "=", 
+       RowBox[{"IndlistInfo", "\[LeftDoubleBracket]", 
+        RowBox[{"ind", ",", "2"}], "\[RightDoubleBracket]"}]}], ";", 
+      "\[IndentingNewLine]", 
       RowBox[{"com", "=", 
-       RowBox[{"ComDetResult", "\[LeftDoubleBracket]", 
-        RowBox[{"ind", ",", "3"}], "\[RightDoubleBracket]"}]}], ";", 
+       RowBox[{
+        RowBox[{"Select", "[", 
+         RowBox[{"ComDetResult", ",", 
+          RowBox[{
+           RowBox[{
+            RowBox[{
+            "#", "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}], 
+            "\[Equal]", "indname"}], "&"}]}], "]"}], "\[LeftDoubleBracket]", 
+        RowBox[{"1", ",", "3"}], "\[RightDoubleBracket]"}]}], ";", 
       "\[IndentingNewLine]", 
       RowBox[{
       "colors", "\[LeftDoubleBracket]", "com", "\[RightDoubleBracket]"}]}]}], 
-    "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]"}], "\n", 
+    "\[IndentingNewLine]", "]"}]}], "\n"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
    RowBox[{"PlotNetwork", "[", 
     RowBox[{
-    "GDmatrix_", ",", "threshold_", ",", "ComDetResult_", ",", "colors_"}], 
-    "]"}], ":=", 
+    "GDmatrix_", ",", "IndlistInfo_", ",", "threshold_", ",", "ComDetResult_",
+      ",", "colors_"}], "]"}], ":=", 
    RowBox[{"(*", 
     RowBox[{
     "Gives", " ", "a", " ", "plot", " ", "of", " ", "the", " ", "network", 
@@ -424,7 +439,9 @@ weighted=TRUE)\n\>\""}], ";", "\[IndentingNewLine]",
            RowBox[{
             RowBox[{"i", "\[Rule]", 
              RowBox[{"ColorFunc", "[", 
-              RowBox[{"i", ",", "ComDetResult", ",", "colors"}], "]"}]}], ",", 
+              RowBox[{
+              "i", ",", "ComDetResult", ",", "IndlistInfo", ",", "colors"}], 
+              "]"}]}], ",", 
             RowBox[{"{", 
              RowBox[{"i", ",", 
               RowBox[{"Length", "[", "ComDetResult", "]"}]}], "}"}]}], 
@@ -435,8 +452,8 @@ weighted=TRUE)\n\>\""}], ";", "\[IndentingNewLine]",
   RowBox[{
    RowBox[{"PlotNetworkCoordinates", "[", 
     RowBox[{
-    "GDmatrix_", ",", "threshold_", ",", "ComDetResult_", ",", 
-     "PopCoordinates_", ",", "proximity_", ",", "colors_"}], "]"}], ":=", 
+    "GDmatrix_", ",", "IndlistInfo_", ",", "threshold_", ",", "ComDetResult_",
+      ",", "PopCoordinates_", ",", "proximity_", ",", "colors_"}], "]"}], ":=", 
    RowBox[{"(*", 
     RowBox[{
      RowBox[{
@@ -497,7 +514,9 @@ weighted=TRUE)\n\>\""}], ";", "\[IndentingNewLine]",
            RowBox[{
             RowBox[{"i", "\[Rule]", 
              RowBox[{"ColorFunc", "[", 
-              RowBox[{"i", ",", "ComDetResult", ",", "colors"}], "]"}]}], ",", 
+              RowBox[{
+              "i", ",", "ComDetResult", ",", "IndlistInfo", ",", "colors"}], 
+              "]"}]}], ",", 
             RowBox[{"{", 
              RowBox[{"i", ",", 
               RowBox[{"Length", "[", "ComDetResult", "]"}]}], "}"}]}], 
@@ -539,83 +558,73 @@ weighted=TRUE)\n\>\""}], ";", "\[IndentingNewLine]",
  RowBox[{
   RowBox[{
    RowBox[{"Qmodularity", "[", 
-    RowBox[{"Aij_", ",", "comunities_"}], "]"}], ":=", 
-   RowBox[{"(*", 
-    RowBox[{"Weighted", " ", "modularity"}], "*)"}], "\[IndentingNewLine]", 
+    RowBox[{"Aij_", ",", "communities_"}], "]"}], ":=", 
    RowBox[{"Module", "[", 
     RowBox[{
      RowBox[{"{", 
-      RowBox[{"TotalWieght", ",", "degrees", ",", "q"}], "}"}], ",", 
-     "\[IndentingNewLine]", 
+      RowBox[{
+      "coms", ",", "communities2", ",", "mm", ",", "sum", ",", "eii", ",", 
+       "ai", ",", "q"}], "}"}], ",", "\[IndentingNewLine]", 
      RowBox[{
-      RowBox[{"TotalWieght", "=", 
+      RowBox[{"coms", "=", 
+       RowBox[{"Union", "[", "communities", "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"communities2", "=", 
+       RowBox[{"Table", "[", 
+        RowBox[{
+         RowBox[{"Flatten", "[", 
+          RowBox[{"Position", "[", 
+           RowBox[{"communities", ",", "c"}], "]"}], "]"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"c", ",", "coms"}], "}"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"mm", "=", 
        RowBox[{"Total", "[", 
         RowBox[{"Flatten", "[", "Aij", "]"}], "]"}]}], ";", 
       "\[IndentingNewLine]", 
-      RowBox[{"degrees", "=", 
-       RowBox[{"Table", "[", 
+      RowBox[{"sum", "=", "0"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"Do", "[", "\[IndentingNewLine]", 
+       RowBox[{
         RowBox[{
-         RowBox[{"Total", "[", 
-          RowBox[{
-          "Aij", "\[LeftDoubleBracket]", "k", "\[RightDoubleBracket]"}], 
-          "]"}], ",", 
-         RowBox[{"{", 
-          RowBox[{"k", ",", 
-           RowBox[{"Length", "[", "Aij", "]"}]}], "}"}]}], "]"}]}], ";", 
-      "\[IndentingNewLine]", 
+         RowBox[{"eii", "=", 
+          RowBox[{"Total", "[", 
+           RowBox[{"Flatten", "[", 
+            RowBox[{"Aij", "\[LeftDoubleBracket]", 
+             RowBox[{
+              RowBox[{
+              "communities2", "\[LeftDoubleBracket]", "i", 
+               "\[RightDoubleBracket]"}], ",", 
+              RowBox[{
+              "communities2", "\[LeftDoubleBracket]", "i", 
+               "\[RightDoubleBracket]"}]}], "\[RightDoubleBracket]"}], "]"}], 
+           "]"}]}], ";", "\[IndentingNewLine]", 
+         RowBox[{"ai", "=", 
+          RowBox[{"Total", "[", 
+           RowBox[{"Flatten", "[", 
+            RowBox[{"Aij", "\[LeftDoubleBracket]", 
+             RowBox[{
+             "communities2", "\[LeftDoubleBracket]", "i", 
+              "\[RightDoubleBracket]"}], "\[RightDoubleBracket]"}], "]"}], 
+           "]"}]}], ";", "\[IndentingNewLine]", 
+         RowBox[{"sum", "=", 
+          RowBox[{"sum", "+", "eii", "-", 
+           FractionBox[
+            SuperscriptBox["ai", "2"], "mm"]}]}], ";"}], 
+        "\[IndentingNewLine]", ",", 
+        RowBox[{"{", 
+         RowBox[{"i", ",", 
+          RowBox[{"Length", "[", "communities2", "]"}]}], "}"}]}], "]"}], ";",
+       "\[IndentingNewLine]", 
+      RowBox[{"q", "=", 
+       RowBox[{"N", "[", 
+        FractionBox["sum", "mm"], "]"}]}], ";", "\[IndentingNewLine]", 
       RowBox[{"If", "[", 
        RowBox[{
         RowBox[{
-         RowBox[{"Length", "[", "comunities", "]"}], "\[Equal]", "1"}], ",", 
-        RowBox[{"q", "=", "0"}], ",", "\[IndentingNewLine]", 
-        RowBox[{
-         RowBox[{"q", "=", "0"}], ";", "\[IndentingNewLine]", 
-         RowBox[{"Do", "[", "\[IndentingNewLine]", 
-          RowBox[{
-           RowBox[{
-            RowBox[{"Do", "[", "\[IndentingNewLine]", 
-             RowBox[{
-              RowBox[{
-               RowBox[{"If", "[", 
-                RowBox[{
-                 RowBox[{
-                  RowBox[{
-                  "comunities", "\[LeftDoubleBracket]", "i", 
-                   "\[RightDoubleBracket]"}], "==", 
-                  RowBox[{
-                  "comunities", "\[LeftDoubleBracket]", "j", 
-                   "\[RightDoubleBracket]"}]}], ",", 
-                 RowBox[{"q", "=", 
-                  RowBox[{"q", "+", 
-                   RowBox[{"Aij", "\[LeftDoubleBracket]", 
-                    RowBox[{"i", ",", "j"}], "\[RightDoubleBracket]"}], "-", 
-                   FractionBox[
-                    RowBox[{
-                    RowBox[{
-                    "degrees", "\[LeftDoubleBracket]", "i", 
-                    "\[RightDoubleBracket]"}], 
-                    RowBox[{
-                    "degrees", "\[LeftDoubleBracket]", "j", 
-                    "\[RightDoubleBracket]"}]}], "TotalWieght"]}]}]}], "]"}], 
-               ";"}], "\[IndentingNewLine]", ",", 
-              RowBox[{"{", 
-               RowBox[{"j", ",", 
-                RowBox[{"Length", "[", "Aij", "]"}]}], "}"}]}], "]"}], ";"}], 
-           "\[IndentingNewLine]", ",", 
-           RowBox[{"{", 
-            RowBox[{"i", ",", 
-             RowBox[{"Length", "[", "Aij", "]"}]}], "}"}]}], "]"}], ";", 
-         "\[IndentingNewLine]", 
-         RowBox[{"If", "[", 
-          RowBox[{
-           RowBox[{
-            RowBox[{"Abs", "[", "q", "]"}], "<", "0.00001"}], ",", 
-           RowBox[{"q", "=", "0"}]}], "]"}], ";", "\[IndentingNewLine]", 
-         RowBox[{"q", "=", 
-          RowBox[{"N", "[", 
-           FractionBox["q", "TotalWieght"], "]"}]}]}]}], "]"}], ";", 
-      "\[IndentingNewLine]", "q"}]}], "\[IndentingNewLine]", "]"}]}], 
-  "\[IndentingNewLine]", "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+         RowBox[{"Abs", "[", "q", "]"}], "<", "0.00001"}], ",", 
+        RowBox[{"q", "=", "0"}]}], "]"}], ";", "\[IndentingNewLine]", "q"}]}],
+     "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
    RowBox[{"DataCheckGDmatrix", "[", "GDmatrix_", "]"}], ":=", 
@@ -827,14 +836,14 @@ populations in the Indlist file\>\"", "}"}]}], "]"}]}], "]"}]}], "]"}], ";",
     RowBox[{
      RowBox[{"{", 
       RowBox[{
-      "GDmatrixfilename", ",", "IndlistInfofilename", ",", "GDmatrix", ",", 
-       "IndlistInfo", ",", "algorithim", ",", "threshold", ",", 
-       "thresholdmin", ",", "thresholdmax", ",", "thresholdjump", ",", 
-       "comdet", ",", "plotQ", ",", "algname", ",", "Ncom", ",", "colors", 
-       ",", "plot1", ",", "poplistfileQ", ",", "popcordlistfilename", ",", 
-       "popcordlist", ",", "prox", ",", "sampledPops", ",", "plot2", ",", 
-       "SADQ", ",", "GDmatrixcheck", ",", "IndlistInfocheck", ",", 
-       "Popcordcheck"}], "}"}], ",", "\[IndentingNewLine]", 
+      "GDmatrixfilename", ",", "IndlistInfofilename", ",", "algorithim", ",", 
+       "threshold", ",", "thresholdmin", ",", "thresholdmax", ",", 
+       "thresholdjump", ",", "comdet", ",", "plotQ", ",", "algname", ",", 
+       "Ncom", ",", "colors", ",", "plot1", ",", "poplistfileQ", ",", 
+       "popcordlistfilename", ",", "popcordlist", ",", "prox", ",", 
+       "sampledPops", ",", "plot2", ",", "SADQ", ",", "GDmatrixcheck", ",", 
+       "IndlistInfocheck", ",", "Popcordcheck"}], "}"}], ",", 
+     "\[IndentingNewLine]", 
      RowBox[{
       RowBox[{"If", "[", 
        RowBox[{
@@ -1199,8 +1208,8 @@ the network? \>\"", ",",
             RowBox[{"plot1", "=", 
              RowBox[{"PlotNetwork", "[", 
               RowBox[{
-              "GDmatrix", ",", "threshold", ",", "comdet", ",", "colors"}], 
-              "]"}]}], ";", "\[IndentingNewLine]", 
+              "GDmatrix", ",", "IndlistInfo", ",", "threshold", ",", "comdet",
+                ",", "colors"}], "]"}]}], ";", "\[IndentingNewLine]", 
             RowBox[{"algname", "=", 
              RowBox[{"Which", "[", 
               RowBox[{
@@ -1241,7 +1250,7 @@ the network? \>\"", ",",
              RowBox[{
               RowBox[{"plot1", "=", 
                RowBox[{"PlotNetwork", "[", 
-                RowBox[{"GDmatrix", ",", "threshold", ",", 
+                RowBox[{"GDmatrix", ",", "IndlistInfo", ",", "threshold", ",", 
                  RowBox[{"comdet", "\[LeftDoubleBracket]", 
                   RowBox[{
                    RowBox[{"Round", "[", 
@@ -1491,9 +1500,9 @@ coordinates?\>\"", ",",
             RowBox[{"plot2", "=", 
              RowBox[{"PlotNetworkCoordinates", "[", 
               RowBox[{
-              "GDmatrix", ",", "threshold", ",", "comdet", ",", "popcordlist",
-                ",", "prox", ",", "colors"}], "]"}]}], ";", 
-            "\[IndentingNewLine]", 
+              "GDmatrix", ",", "IndlistInfo", ",", "threshold", ",", "comdet",
+                ",", "popcordlist", ",", "prox", ",", "colors"}], "]"}]}], 
+            ";", "\[IndentingNewLine]", 
             RowBox[{"plot2", "=", 
              RowBox[{"Grid", "[", 
               RowBox[{"{", 
@@ -1519,7 +1528,8 @@ coordinates?\>\"", ",",
               RowBox[{
                RowBox[{"plot2", "=", 
                 RowBox[{"PlotNetworkCoordinates", "[", 
-                 RowBox[{"GDmatrix", ",", "threshold", ",", 
+                 RowBox[{
+                 "GDmatrix", ",", "IndlistInfo", ",", "threshold", ",", 
                   RowBox[{"comdet", "\[LeftDoubleBracket]", 
                    RowBox[{
                     RowBox[{"Round", "[", 
@@ -1726,9 +1736,9 @@ coordinates?\>\"", ",",
             RowBox[{"plot2", "=", 
              RowBox[{"PlotNetworkCoordinates", "[", 
               RowBox[{
-              "GDmatrix", ",", "threshold", ",", "comdet", ",", "popcordlist",
-                ",", "prox", ",", "colors"}], "]"}]}], ";", 
-            "\[IndentingNewLine]", 
+              "GDmatrix", ",", "IndlistInfo", ",", "threshold", ",", "comdet",
+                ",", "popcordlist", ",", "prox", ",", "colors"}], "]"}]}], 
+            ";", "\[IndentingNewLine]", 
             RowBox[{"plot2", "=", 
              RowBox[{"Grid", "[", 
               RowBox[{"{", 
@@ -1747,8 +1757,8 @@ coordinates?\>\"", ",",
             RowBox[{"plot1", "=", 
              RowBox[{"PlotNetwork", "[", 
               RowBox[{
-              "GDmatrix", ",", "threshold", ",", "comdet", ",", "colors"}], 
-              "]"}]}], ";", "\[IndentingNewLine]", 
+              "GDmatrix", ",", "IndlistInfo", ",", "threshold", ",", "comdet",
+                ",", "colors"}], "]"}]}], ";", "\[IndentingNewLine]", 
             RowBox[{"plot1", "=", 
              RowBox[{"Grid", "[", 
               RowBox[{"{", 
@@ -1774,7 +1784,8 @@ coordinates?\>\"", ",",
               RowBox[{
                RowBox[{"plot2", "=", 
                 RowBox[{"PlotNetworkCoordinates", "[", 
-                 RowBox[{"GDmatrix", ",", "threshold", ",", 
+                 RowBox[{
+                 "GDmatrix", ",", "IndlistInfo", ",", "threshold", ",", 
                   RowBox[{"comdet", "\[LeftDoubleBracket]", 
                    RowBox[{
                     RowBox[{"Round", "[", 
@@ -1810,7 +1821,8 @@ coordinates?\>\"", ",",
                "\[IndentingNewLine]", 
                RowBox[{"plot1", "=", 
                 RowBox[{"PlotNetwork", "[", 
-                 RowBox[{"GDmatrix", ",", "threshold", ",", 
+                 RowBox[{
+                 "GDmatrix", ",", "IndlistInfo", ",", "threshold", ",", 
                   RowBox[{"comdet", "\[LeftDoubleBracket]", 
                    RowBox[{
                     RowBox[{"Round", "[", 
@@ -2323,7 +2335,7 @@ commnunities\>\"", ",", "Bold", ",", "18"}], "]"}], "}"}]}], "]"}], "]"}]}]}],
          ";", "\[IndentingNewLine]", 
          RowBox[{"d", "=", 
           RowBox[{"ind2", "\[LeftDoubleBracket]", 
-           RowBox[{"3", ",", "l", ",", "1"}], "\[RightDoubleBracket]"}]}], 
+           RowBox[{"3", ",", "l", ",", "2"}], "\[RightDoubleBracket]"}]}], 
          ";", "\[IndentingNewLine]", 
          RowBox[{"If", "[", 
           RowBox[{
@@ -2356,13 +2368,13 @@ commnunities\>\"", ",", "Bold", ",", "18"}], "]"}], "}"}]}], "]"}], "]"}]}]}],
                     RowBox[{
                     RowBox[{"a", "\[Equal]", "d"}], ",", "1", ",", "0"}], 
                     "]"}]}], ")"}]}], "+", 
-                 RowBox[{"(", 
-                  RowBox[{"1", "-", 
-                   RowBox[{
+                 RowBox[{
+                  RowBox[{"(", 
+                   RowBox[{"1", "-", 
                     RowBox[{"freq", "[", 
-                    RowBox[{"b", ",", "l", ",", "freqlist"}], "]"}], 
-                    RowBox[{"(", 
-                    RowBox[{
+                    RowBox[{"b", ",", "l", ",", "freqlist"}], "]"}]}], ")"}], 
+                  RowBox[{"(", 
+                   RowBox[{
                     RowBox[{"If", "[", 
                     RowBox[{
                     RowBox[{"b", "\[Equal]", "c"}], ",", "1", ",", "0"}], 
@@ -2370,7 +2382,7 @@ commnunities\>\"", ",", "Bold", ",", "18"}], "]"}], "}"}]}], "]"}], "]"}]}]}],
                     RowBox[{"If", "[", 
                     RowBox[{
                     RowBox[{"b", "\[Equal]", "d"}], ",", "1", ",", "0"}], 
-                    "]"}]}], ")"}]}]}], ")"}]}], ")"}]}]}]}], ";"}]}], 
+                    "]"}]}], ")"}]}]}], ")"}]}]}]}], ";"}]}], 
           "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", ",", 
         RowBox[{"{", 
          RowBox[{"l", ",", "Nloci"}], "}"}]}], "]"}], ";", 
@@ -3251,8 +3263,9 @@ data entered).\n How many permutations (recommended at least 999)?\>\"",
      "inputtypeQ", "\[IndentingNewLine]", "Indlist", "\[IndentingNewLine]", 
       "singlevalue", "\[IndentingNewLine]", "continuefeomcontructQ", 
       "\[IndentingNewLine]", "comdetresults", "\[IndentingNewLine]", 
-      "Outputfilename"}]}]}], "\[IndentingNewLine]", "*)"}], 
-  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+      "Outputfilename", "\[IndentingNewLine]", "GDmatrix", 
+      "\[IndentingNewLine]", "IndlistInfo"}]}]}], "\[IndentingNewLine]", 
+   "*)"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"NetStruct", "[", "]"}], ":=", 
   RowBox[{"(", "\[IndentingNewLine]", 
@@ -3532,7 +3545,13 @@ community partition?\>\"", ",",
    3.6517151976006737`*^9}, 3.6517182488935413`*^9, {3.651719543344903*^9, 
    3.6517195707758427`*^9}, {3.651719906766575*^9, 3.6517199350325108`*^9}, {
    3.651719980415985*^9, 3.6517200136424065`*^9}, {3.6517206099103804`*^9, 
-   3.6517206118432884`*^9}, 3.651907555647457*^9},
+   3.6517206118432884`*^9}, 3.651907555647457*^9, 3.653883601091423*^9, {
+   3.653884934321679*^9, 3.6538849733749127`*^9}, {3.655364292566112*^9, 
+   3.6553642967803535`*^9}, {3.659593206894681*^9, 3.659593219556405*^9}, {
+   3.6595934512886596`*^9, 3.6595934666385374`*^9}, 3.6595937730980663`*^9, {
+   3.65959454610528*^9, 3.659594554585765*^9}, {3.659594694947793*^9, 
+   3.6595947588924503`*^9}, {3.6595949170864983`*^9, 3.6595950079126935`*^9}, 
+   3.6596793621454797`*^9},
  Background->RGBColor[0.88, 1, 0.88]],
 
 Cell[" ", "Text",
@@ -3570,8 +3589,8 @@ Cell[678, 25, 1378, 25, 182, "Text"],
 Cell[2059, 52, 137, 3, 47, "Input"],
 Cell[CellGroupData[{
 Cell[2221, 59, 107, 1, 49, "Subtitle"],
-Cell[2331, 62, 149441, 3473, 11770, "Input"],
-Cell[151775, 3537, 271, 9, 10, "Text"]
+Cell[2331, 62, 150257, 3492, 11784, "Input"],
+Cell[152591, 3556, 271, 9, 10, "Text"]
 }, Open  ]]
 }, Open  ]]
 }
